@@ -13,6 +13,9 @@ Version: 1.1
 /*--------------------------------------------------------------
 /** 1. VARIABLES
 --------------------------------------------------------------*/
+
+
+
 :root {
   /* widths for rows and containers
      */
@@ -1838,24 +1841,34 @@ img.post-image {
   color: var(--accent-color);
 }
 
-/*----- Billboard
+/*----- Billboard (Hero principal)
 --------------------------------------------------------------*/
+/* Slider grande del hero */
 #billboard .main-slider {
   padding: 80px 0;
 }
 
+/* 
+   Cada slide del hero.
+   - Texto a la izquierda (.banner-content)
+   - Imagen a la derecha (.banner-image)
+*/
 .main-slider .slider-item {
   display: flex;
   width: 100%;
-  justify-content: center;
+  align-items: center;           /* centra verticalmente texto e imagen */
+  justify-content: space-between;
+  gap: 40px;                     /* espacio entre columnas */
 }
 
+/* Columna de TEXTO del hero */
 .main-slider .banner-content {
-  width: 35%;
-  margin-top: 60px;
-  margin-right: 175px;
+  flex: 0 0 45%;
+  max-width: 45%;
+  margin: 0;                     /* quitamos márgenes forzados */
 }
 
+/* Título grande del hero */
 .banner-content h2.banner-title {
   font-size: 4.5em;
   font-weight: 500;
@@ -1866,6 +1879,16 @@ img.post-image {
   margin: 0 0 30px 0;
 }
 
+/* Columna de IMAGEN del hero */
+.main-slider .banner-image {
+  flex: 0 0 45%;
+  max-width: 45%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Puntos y flechas del slider */
 #billboard .slick-dots {
   left: 200px;
   bottom: 110px;
@@ -1903,6 +1926,7 @@ img.post-image {
   color: #8C8C8C;
 }
 
+/* Ajustes de flechas en pantallas más angostas */
 @media screen and (max-width: 1366px) {
   #billboard button.prev.slick-arrow {
     left: 0;
@@ -1913,7 +1937,9 @@ img.post-image {
   }
 }
 
+/* Versión responsive del hero (móvil/tablet) */
 @media screen and (max-width: 999px) {
+
   .banner-content h2.banner-title {
     font-size: 3.5em;
   }
@@ -1924,16 +1950,20 @@ img.post-image {
   }
 
   .main-slider .slider-item {
-    flex-wrap: wrap;
+    flex-direction: column-reverse; /* imagen arriba, texto abajo */
     text-align: center;
-    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .main-slider .banner-content,
+  .main-slider .banner-image {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 
   .main-slider .banner-content {
-    width: 100%;
-    margin-top: 60px;
-    margin-right: 0;
-    margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 
   #billboard .slick-dots {
@@ -1943,6 +1973,7 @@ img.post-image {
     text-align: center;
   }
 }
+
 
 /*----- Cient-holder Section
 --------------------------------------------------------------*/
@@ -2442,3 +2473,191 @@ footer#footer {
     width: 100%;
   }
 }
+
+
+
+.slick-prev, .slick-next {
+    background: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: none;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+    color: #333;
+    position: absolute;
+    top: 40%;
+    z-index: 10;
+}
+
+.slick-prev {
+    left: -50px;
+}
+
+.slick-next {
+    right: -50px;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: #f4f4f4;
+}
+
+.book-slider {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+
+
+#featured-books {
+  padding: 60px 0;
+}
+
+/* Wrapper general del carrusel (para posicionar las flechas) */
+.deals-wrapper {
+  position: relative;
+  margin-top: 20px;
+}
+
+/* 
+   Carrusel horizontal.
+   
+*/
+.deals-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 5px 20px;
+
+  /* Ocultar scrollbar visualmente */
+  -ms-overflow-style: none;   /* IE y Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+
+.deals-carousel::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari, Opera */
+}
+
+/* === Tarjeta de libro (card) === */
+.deal-card {
+  flex: 0 0 260px;            /* ancho fijo de cada card */
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.deal-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.deal-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.deal-sub {
+  font-size: 14px;
+  color: #777;
+}
+
+/* === Flechas del carrusel (prev/next) === */
+.deals-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  z-index: 5;
+  color: #000 !important;   /* simbolitos negros */
+  background-color: #fff;
+  border: 1px solid #ccc;
+
+}
+
+.deals-prev {
+  left: -18px;
+}
+
+.deals-next {
+  right: -18px;
+}
+
+.deals-arrow:hover {
+  background: #f4f4f4;
+  background-color: #f2f2f2;
+}
+
+
+
+/* ============================================
+   PRUEBA
+   ============================================ */
+
+/* Fuerza el layout en desktop */
+@media (min-width: 1000px) {
+
+  /* Cada slide del hero en modo fila */
+  #billboard .main-slider .slick-slide .slider-item,
+  #billboard .main-slider .slider-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 40px;
+  }
+
+  /* Columna de texto */
+  #billboard .main-slider .banner-content {
+    flex: 0 0 45% !important;
+    max-width: 45% !important;
+    margin: 0 !important;
+  }
+
+  /* Columna de imagen */
+  #billboard .main-slider .banner-image {
+    flex: 0 0 45% !important;
+    max-width: 45% !important;
+    height: auto !important;
+    object-fit: cover;
+    display: block;
+  }
+}
+.menu-list .menu-item.active > a {
+    color: var(--accent-color) !important;
+
+
+    /* 80% */
+.page-scale-80 {
+    transform: scale(0.8);
+    transform-origin: top center;
+    width: 125%; /* compensa el shrink y evita espacios laterales */
+}
+
+
+

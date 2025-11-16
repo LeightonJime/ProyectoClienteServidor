@@ -1,141 +1,175 @@
-(function($) {
+(function ($) {
 
   "use strict";
 
-  const tabs = document.querySelectorAll('[data-tab-target]')
-  const tabContents = document.querySelectorAll('[data-tab-content]')
+  /* =========================================================
+     TABS (si existen)
+  ============================================================ */
+  const tabs = document.querySelectorAll('[data-tab-target]');
+  const tabContents = document.querySelectorAll('[data-tab-content]');
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const target = document.querySelector(tab.dataset.tabTarget)
-      tabContents.forEach(tabContent => {
-        tabContent.classList.remove('active')
-      })
-      tabs.forEach(tab => {
-        tab.classList.remove('active')
-      })
-      tab.classList.add('active')
-      target.classList.add('active')
-    })
+      const target = document.querySelector(tab.dataset.tabTarget);
+
+      tabContents.forEach(c => c.classList.remove('active'));
+      tabs.forEach(t => t.classList.remove('active'));
+
+      tab.classList.add('active');
+      target.classList.add('active');
+    });
   });
 
-  // Responsive Navigation with Button
 
+  /* =========================================================
+     MENÚ RESPONSIVE (hamburguesa)
+  ============================================================ */
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".menu-list");
 
-  hamburger.addEventListener("click", mobileMenu);
-
-  function mobileMenu() {
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("responsive");
+    });
   }
 
   const navLink = document.querySelectorAll(".nav-link");
 
-  navLink.forEach(n => n.addEventListener("click", closeMenu));
+  navLink.forEach(n => n.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("responsive");
+  }));
 
-  function closeMenu() {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("responsive");
-  }
 
-  var initScrollNav = function() {
-    var scroll = $(window).scrollTop();
+  /* =========================================================
+     HEADER FIXED AL HACER SCROLL
+  ============================================================ */
+  const initScrollNav = () => {
+    const scroll = $(window).scrollTop();
+    if (scroll >= 200) $("#header").addClass("fixed-top");
+    else $("#header").removeClass("fixed-top");
+  };
 
-    if (scroll >= 200) {
-      $('#header').addClass("fixed-top");
-    }else{
-      $('#header').removeClass("fixed-top");
-    }
-  }
+  $(window).scroll(() => initScrollNav());
 
-  $(window).scroll(function() {    
+
+  /* =========================================================
+     DOCUMENT READY
+  ============================================================ */
+  $(document).ready(function () {
+
     initScrollNav();
-  }); 
 
-  $(document).ready(function(){
-    initScrollNav();
-    
-    Chocolat(document.querySelectorAll('.image-link'), {
+    /* =============================
+       Chocolat (solo si existe)
+    ============================== */
+    if (typeof Chocolat !== "undefined") {
+      Chocolat(document.querySelectorAll('.image-link'), {
         imageSize: 'contain',
         loop: true,
-    })
+      });
+    }
 
-    $('#header-wrap').on('click', '.search-toggle', function(e) {
-      var selector = $(this).data('selector');
-
+    /* =============================
+       Buscador en Header
+    ============================== */
+    $('#header-wrap').on('click', '.search-toggle', function (e) {
+      const selector = $(this).data('selector');
       $(selector).toggleClass('show').find('.search-input').focus();
       $(this).toggleClass('active');
-
       e.preventDefault();
     });
 
-
-    // close when click off of container
-    $(document).on('click touchstart', function (e){
+    $(document).on('click touchstart', function (e) {
       if (!$(e.target).is('.search-toggle, .search-toggle *, #header-wrap, #header-wrap *')) {
         $('.search-toggle').removeClass('active');
         $('#header-wrap').removeClass('show');
       }
     });
 
-    $('.main-slider').slick({
+
+    /* =========================================================
+       SLIDER PRINCIPAL (billboard) 
+    ============================================================ */
+    if ($.fn.slick) {
+      $('.main-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        fade: true,
+        infinite: true,
+        dots: true,
         autoplay: false,
         autoplaySpeed: 4000,
-        fade: true,
-        dots: true,
         prevArrow: $('.prev'),
         nextArrow: $('.next'),
-    }); 
+      });
+    }
 
-    $('.product-grid').slick({
+
+    /* =========================================================
+       PRODUCT GRID (populares)
+    ============================================================ */
+    if ($.fn.slick) {
+      $('.product-grid').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 2000,
         dots: true,
         arrows: false,
+        autoplay: false,
         responsive: [
-          {
-            breakpoint: 1400,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 999,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 660,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
+          { breakpoint: 1400, settings: { slidesToShow: 3 } },
+          { breakpoint: 999, settings: { slidesToShow: 2 } },
+          { breakpoint: 660, settings: { slidesToShow: 1 } }
         ]
-    });
+      });
+    }
 
-    AOS.init({
-      duration: 1200,
-      once: true,
-    })
 
-    jQuery('.stellarnav').stellarNav({
-      theme: 'plain',
-      closingDelay: 250,
-      // mobileMode: false,
-    });
+    /* =========================================================
+       CARRUSEL MANUAL — LIBROS DESTACADOS
+    ============================================================ */
+    const dealsWrapper = document.querySelector('.deals-wrapper');
+    if (dealsWrapper) {
+      const dealsCarousel = dealsWrapper.querySelector('.deals-carousel');
+      const dealsPrev = dealsWrapper.querySelector('.deals-prev');
+      const dealsNext = dealsWrapper.querySelector('.deals-next');
+      const scrollAmount = 300;
 
-  }); // End of a document
+      if (dealsPrev) {
+        dealsPrev.addEventListener("click", () => {
+          dealsCarousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        });
+      }
 
+      if (dealsNext) {
+        dealsNext.addEventListener("click", () => {
+          dealsCarousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+      }
+    }
+
+    /* =========================================================
+       AOS (si existe)
+    ============================================================ */
+    if (typeof AOS !== "undefined") {
+      AOS.init({
+        duration: 1200,
+        once: true,
+      });
+    }
+
+    /* =========================================================
+       MENÚ DESPLEGABLE PRINCIPAL (stellarNav)
+    ============================================================ */
+    if ($.fn.stellarNav) {
+      $('.stellarnav').stellarNav({
+        theme: 'plain',
+        closingDelay: 250,
+      });
+    }
+
+  }); // end document ready
 
 })(jQuery);

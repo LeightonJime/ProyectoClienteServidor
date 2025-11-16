@@ -19,9 +19,22 @@
   <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
   <link rel="stylesheet" type="text/css" href="css/vendor.css">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+   <div class="page-scale-80">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script src="js/script.js"></script>
+
+<!--Jose Acuna -->
+<script src="js/carousel-libros-destacados.js"></script>
+
 
   <div id="header-wrap">
 
@@ -93,7 +106,7 @@
                   <li class="menu-item"><a href="#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="#popular-books" class="nav-link">Populares</a></li>
                   <li class="menu-item"><a href="#special-offer" class="nav-link">Ofertas</a></li>
-                  <li class="menu-item"><a href="#latest-blog" class="nav-link">Artículos</a></li>
+                  <li class="menu-item"><a href="articulos/articulos.html" class="nav-link">Artículos</a></li>
                   <li class="menu-item"><a href="#download-app" class="nav-link">Descargar App</a></li>
                 </ul>
 
@@ -138,7 +151,7 @@
             <div class="slider-item">
               <div class="banner-content">
                 <h2 class="banner-title">Los pájaros serán felices</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis urna, a eu.</p>
+                <p>Un padre separado hace años de su mujer, con la que tiene una hija llamada Sara, que tiene un comportamiento extraño: se pasa horas sentada mirando el jardín, y no se alimenta de nada excepto por pájaros vivos, que su madre le suministra. Un relato corto sobre dos hermanas en la niñez.</p>
                 <div class="btn-wrap">
                   <a href="#" class="btn btn-outline-accent btn-accent-arrow">Leer más
                     <i class="icon icon-ns-arrow-right"></i></a>
@@ -158,110 +171,81 @@
     </div>
   </section>
 
-  <section id="client-holder" data-aos="fade-up">
-    <div class="container">
-      <div class="row">
-        <div class="inner-content">
-          <div class="logo-wrap">
-            <div class="grid">
-              <a href="#"><img src="images/client-image1.png" alt="cliente"></a>
-              <a href="#"><img src="images/client-image2.png" alt="cliente"></a>
-              <a href="#"><img src="images/client-image3.png" alt="cliente"></a>
-              <a href="#"><img src="images/client-image4.png" alt="cliente"></a>
-              <a href="#"><img src="images/client-image5.png" alt="cliente"></a>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+
+  <!--Jose Acuna INICIO -->
+
+  <section id="featured-books" class="padding-small">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="small-text">Algunos artículos de calidad</span>
+      <h2 class="section-title">Libros Destacados</h2>
     </div>
-  </section>
 
-  <section id="featured-books" class="py-5 my-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
+    <div class="deals-wrapper">
 
-          <div class="section-header align-center">
-            <div class="title">
-              <span>Algunos artículos de calidad</span>
-            </div>
-            <h2 class="section-title">Libros destacados</h2>
-          </div>
+      <!-- Botón anterior -->
+      <button class="deals-arrow deals-prev" type="button">‹</button>
 
-          <div class="product-list" data-aos="fade-up">
-            <div class="row">
+      <!-- CARRUSEL HORIZONTAL -->
+      <div class="deals-carousel">
 
-              <div class="col-md-3">
-                <div class="product-item">
-                  <figure class="product-style">
-                    <img src="images/product-item1.jpg" alt="Libro" class="product-item">
-                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Añadir al carrito</button>
-                  </figure>
-                  <figcaption>
-                    <h3>Simple way of piece life</h3>
-                    <span>Armor Ramsey</span>
-                    <div class="item-price">$ 40.00</div>
-                  </figcaption>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="product-item">
-                  <figure class="product-style">
-                    <img src="images/product-item2.jpg" alt="Libro" class="product-item">
-                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Añadir al carrito</button>
-                  </figure>
-                  <figcaption>
-                    <h3>Great travel at desert</h3>
-                    <span>Sanchit Howdy</span>
-                    <div class="item-price">$ 38.00</div>
-                  </figcaption>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="product-item">
-                  <figure class="product-style">
-                    <img src="images/product-item3.jpg" alt="Libro" class="product-item">
-                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Añadir al carrito</button>
-                  </figure>
-                  <figcaption>
-                    <h3>The lady beauty Scarlett</h3>
-                    <span>Arthur Doyle</span>
-                    <div class="item-price">$ 45.00</div>
-                  </figcaption>
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="product-item">
-                  <figure class="product-style">
-                    <img src="images/product-item4.jpg" alt="Libro" class="product-item">
-                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Añadir al carrito</button>
-                  </figure>
-                  <figcaption>
-                    <h3>Once upon a time</h3>
-                    <span>Klien Marry</span>
-                    <div class="item-price">$ 35.00</div>
-                  </figcaption>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
+        <div class="deal-card">
+            <img src="images/don-quijote.jpg" class="deal-image">
+            <h4 class="deal-title">Don Quijote De La Mancha</h4>
+            <p class="deal-sub">Clásico literario</p>
         </div>
+
+        <div class="deal-card">
+            <img src="images/main-banner2.jpg" class="deal-image">
+            <h4 class="deal-title">Los Pájaros Serán Felices</h4>
+            <p class="deal-sub">Happy Book</p>
+        </div>
+
+        <div class="deal-card">
+            <img src="images/edicision-especial.jpg" class="deal-image">
+            <h4 class="deal-title">Edición Especial Quijote</h4>
+            <p class="deal-sub">Versión premium</p>
+        </div>
+
+        <div class="deal-card">
+            <img src="images/happy-book.jpg" class="deal-image">
+            <h4 class="deal-title">Happy Book Deluxe</h4>
+            <p class="deal-sub">Edición limitada</p>
+        </div>
+
+        <!-- NUEVOS LIBROS -->
+        <div class="deal-card">
+            <img src="images/principito.jpg" class="deal-image">
+            <h4 class="deal-title">El Principito</h4>
+            <p class="deal-sub">Ficción filosófica</p>
+        </div>
+
+        <div class="deal-card">
+            <img src="images/ciensoledad.jpg" class="deal-image">
+            <h4 class="deal-title">Cien Años de Soledad</h4>
+            <p class="deal-sub">Realismo mágico</p>
+        </div>
+
+        <div class="deal-card">
+            <img src="images/odisea.jpg" class="deal-image">
+            <h4 class="deal-title">La Odisea</h4>
+            <p class="deal-sub">Épico clásico</p>
+        </div>
+
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="btn-wrap align-right">
-            <a href="#" class="btn-accent-arrow">Ver todos los productos <i class="icon icon-ns-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
+      <!-- Botón siguiente -->
+      <button class="deals-arrow deals-next" type="button">›</button>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<!--Jose Acuna FINAL -->
+
+
+
 
   <section id="best-selling" class="leaf-pattern-overlay">
     <div class="corner-pattern-overlay"></div>
