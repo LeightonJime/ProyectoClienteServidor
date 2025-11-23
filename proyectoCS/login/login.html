@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Biblioteca Pública de Heredia - Login</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos generales del proyecto -->
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" type="text/css" href="../css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+
+  <!-- Estilo específico del login/registro -->
+  <link rel="stylesheet" type="text/css" href="login-style.css">
+
+</head>
+
+<body>
+  <div class="page-scale-80">
+
+    <!-- Header -->
+    <div id="header-wrap">
+      <div class="top-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="social-links">
+                <ul>
+                  <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                  <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                  <li><a href="#"><i class="icon icon-youtube-play"></i></a></li>
+                  <li><a href="#"><i class="icon icon-behance-square"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="right-element">
+                <a href="login.html" class="user-account for-buy">
+                  <i class="icon icon-user"></i>
+                  <span>Cuenta</span>
+                </a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header id="header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="main-logo">
+                <a href="../index.html"><img src="../images/main-logo.png" alt="logo"></a>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <nav id="navbar">
+                <div class="main-menu stellarnav">
+                  <ul class="menu-list">
+                    <li class="menu-item"><a href="../index.html">Inicio</a></li>
+                    <li class="menu-item"><a href="../index.html#featured-books">Destacados</a></li>
+                    <li class="menu-item"><a href="../index.html#popular-books">Populares</a></li>
+                    <li class="menu-item"><a href="../index.html#special-offer">Ofertas</a></li>
+                  </ul>
+                  <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Login central estilo registro -->
+    <section class="login-section">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-5">
+            <div class="login-card text-center">
+              <i class="icon icon-user-circle mb-3"></i>
+              <h2 class="mb-4">Iniciar Sesión</h2>
+              <form action="login.php" method="post">
+                <div class="mb-3 text-start">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                </div>
+                <div class="mb-3 text-start">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                </div>
+                <div class="d-grid mb-3">
+                  <button type="submit" class="btn btn-login">Iniciar sesión</button>
+                </div>
+              </form>
+              <p>¿No tienes cuenta? <a href="Registrarse.html">Regístrate aquí</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <p>&copy; 2025 Biblioteca Pública de Heredia. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+</body>
+</html>

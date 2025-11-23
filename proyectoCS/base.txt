@@ -1,0 +1,19 @@
+
+--------------CREAR BASE-------------------
+
+create database biblioheredia;
+
+//usuario admin ejemplo
+Nombre: Adminbiblio
+Contraseña: biblio123
+
+--------------CREAR TABLA USUARIOS-------------------
+
+use biblioheredia;
+create table usuarios(
+    id_usuario int auto_increment primary key,
+    username varchar(100) not null,
+    email varchar(100) not null,
+    password varchar(255) not null
+);
+

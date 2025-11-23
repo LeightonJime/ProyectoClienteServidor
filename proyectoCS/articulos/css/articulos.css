@@ -1,0 +1,148 @@
+/* Página de Artículos
+   Usa las mismas variables y tipografías definidas en style.css
+-------------------------------------------------------------- */
+
+
+
+
+.articulos-page {
+  background-color: var(--light-color);
+}
+
+/* Títulos de sección (Artículo / Artículo en audio) */
+.articulos-section {
+  margin-bottom: 3rem;
+}
+
+.articulos-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.articulos-title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.articulos-ver-mas {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.articulos-ver-mas:hover {
+  color: #111;
+}
+
+/* Grid de tarjetas */
+.articulos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Tarjeta base */
+.articulo-card {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.articulo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* Portada */
+.articulo-cover {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.articulo-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Icono de audio arriba de la portada */
+.articulo-card-audio .articulo-cover {
+  background-color: #000;
+}
+
+.articulo-icon-audio {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: rgba(17, 17, 17, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.articulo-icon-audio i {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Texto debajo de la portada */
+.articulo-info {
+  padding: 0.85rem 0.9rem 1rem;
+}
+
+.articulo-autor {
+  font-family: var(--body-font);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 0.15rem;
+  color: var(--dark-color);
+}
+
+/* “Artículo”, “Artículo – Compilación” */
+.articulo-tipo {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.articulo-tipo:hover {
+  color: #111;
+}
+
+/* Año o rango de años */
+.articulo-anio {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--light-text-color);
+  margin-top: 0.1rem;
+}
+
+/* Responsive pequeño */
+@media (max-width: 768px) {
+  .articulos-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .articulos-ver-mas {
+    font-size: 0.85rem;
+  }
+}
+
