@@ -1,0 +1,45 @@
+--------------CREAR BASE-------------------
+
+create database biblioheredia;
+
+//usuario admin ejemplo
+Nombre: Adminbiblio
+Contraseña: biblio123
+
+--------------CREAR TABLA USUARIOS-------------------
+
+use biblioheredia;
+create table usuarios(
+    id_usuario int auto_increment primary key,
+    username varchar(100) not null,
+    email varchar(100) not null,
+    password varchar(255) not null
+);
+
+--------------CREAR TABLA LIBROS---------------
+
+use biblioheredia;
+create table libro(
+    isbn varchar (16) not null primary key, --el isbn viene siendo el identificador
+    titulo varchar (100) not null,
+    escritor varchar (100),
+    anno varchar (16),
+    descr (255),
+);
+
+--------------CREAR COLECCIONES---------------
+
+use biblioheredia;
+create table coleccion(
+   id_coleccion int auto_increment primary key,
+   c_nombre varchar (100) not null
+);
+
+use biblioheredia;
+create table lista(
+    id_lista int auto_increment primary key,
+    fk_id_coleccion int, 
+    fk_isbn varchar (16),
+    foreign key (fk_id_coleccion) references coleccion(id_coleccion),
+    foreign key (fk_isbn) references libro(isbn)
+);
