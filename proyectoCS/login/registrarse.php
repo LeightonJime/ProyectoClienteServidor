@@ -1,5 +1,5 @@
 <?php
-include 'conn.php';
+include '../conn.php';
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password_plano = $_POST['password'];

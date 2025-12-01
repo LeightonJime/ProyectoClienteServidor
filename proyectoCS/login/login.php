@@ -1,5 +1,5 @@
 <?php
-include 'conn.php';
+include '../conn.php';
 session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -11,7 +11,9 @@ if ($row = $result->fetch_assoc()) {
     if (password_verify($password, $row['password'])) {
         $_SESSION['session_id_usuario'] = $row['id_usuario'];        
         $_SESSION['session_usuario_nombre'] = $row['username'];        
-        echo "Bienvenido, " . $row['username'];    } else {
+        header("Location: ../index.html"); 
+        exit();
+    } else {
         echo "Contraseña incorrecta.";    }
 } else {
     echo "No se encontró el usuario.";}

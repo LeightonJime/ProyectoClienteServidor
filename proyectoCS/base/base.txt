@@ -24,7 +24,7 @@ create table libro(
     titulo varchar (100) not null,
     escritor varchar (100),
     anno varchar (16),
-    descr (255),
+    descr varchar (255)
 );
 
 --------------CREAR COLECCIONES---------------
@@ -41,5 +41,18 @@ create table lista(
     fk_id_coleccion int, 
     fk_isbn varchar (16),
     foreign key (fk_id_coleccion) references coleccion(id_coleccion),
+    foreign key (fk_isbn) references libro(isbn)
+);
+
+--------------CREAR PRÉSTAMOS---------------
+
+use biblioheredia;
+create table prestamo(
+    id_prestamo int auto_increment primary key,
+    fk_id_usuario int,
+    fk_isbn varchar (16),
+    fecha_prestamo date,
+    fecha_vence date,
+    foreign key (fk_id_usuario) references usuarios(id_usuario),
     foreign key (fk_isbn) references libro(isbn)
 );
