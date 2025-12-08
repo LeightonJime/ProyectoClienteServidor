@@ -1,0 +1,48 @@
+Tabla dinamica para los carrouseles del index
+
+Guia
+
+En phpMyAdmin:
+
+1. Entra a la base biblioheredia.
+2. Ir a la pestaña SQL.
+
+Libros destacados
+
+CREATE TABLE libros_destacados (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo     VARCHAR(150) NOT NULL,
+  subtitulo  VARCHAR(150) NOT NULL,
+  imagen     VARCHAR(255) NOT NULL
+);
+
+Libros populares
+
+CREATE TABLE libros_populares (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo     VARCHAR(150) NOT NULL,
+  subtitulo  VARCHAR(150) NOT NULL,
+  imagen     VARCHAR(255) NOT NULL
+);
+
+Insertar libros
+
+INSERT INTO libros_destacados (titulo, subtitulo, imagen) VALUES
+('Don Quijote De La Mancha', 'Clásico literario',      'images/don-quijote.jpg'),
+('Los Pájaros Serán Felices', 'Happy Book',            'images/main-banner2.jpg'),
+('Edición Especial Quijote',  'Versión premium',       'images/edicision-especial.jpg'),
+('Happy Book Deluxe',         'Edición limitada',      'images/happy-book.jpg'),
+('El Principito',             'Ficción filosófica',    'images/principito.jpg'),
+('Cien Años de Soledad',      'Realismo mágico',       'images/ciensoledad.jpg'),
+('La Odisea',                 'Épico clásico',         'images/odisea.jpg');
+
+
+INSERT INTO libros_populares (titulo, subtitulo, imagen) VALUES
+('Don Quijote De La Mancha', 'Clásico literario',      'images/don-quijote.jpg'),
+('Los Pájaros Serán Felices', 'Happy Book',            'images/main-banner2.jpg'),
+('Edición Especial Quijote',  'Versión premium',       'images/edicision-especial.jpg'),
+('Happy Book Deluxe',         'Edición limitada',      'images/happy-book.jpg'),
+('El Principito',             'Ficción filosófica',    'images/principito.jpg'),
+('Cien Años de Soledad',      'Realismo mágico',       'images/ciensoledad.jpg'),
+('La Odisea',                 'Épico clásico',         'images/odisea.jpg');
+
