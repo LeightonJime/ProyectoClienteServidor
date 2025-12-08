@@ -1,0 +1,28 @@
+Indicaciones para hisotrias de usuario
+
+1. En phpMyAdmin 
+2. biblioheredia 
+3. SQL, ejecutar:
+
+ALTER TABLE libro
+  ADD COLUMN estado ENUM('DISPONIBLE','RESERVADO') NOT NULL DEFAULT 'DISPONIBLE';
+
+Crear tabla de reservas
+
+ahi mismo en biblioheredia
+
+CREATE TABLE reserva (
+  id_reserva INT AUTO_INCREMENT PRIMARY KEY,
+  isbn       VARCHAR(20) NOT NULL,
+  nombre     VARCHAR(100) NOT NULL,
+  correo     VARCHAR(100) NOT NULL,
+  fecha_reserva DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  estado     ENUM('PENDIENTE','RETIRADO','CANCELADA') NOT NULL DEFAULT 'PENDIENTE',
+  CONSTRAINT fk_reserva_libro FOREIGN KEY (isbn) REFERENCES libro(isbn)
+);
+
+
+ALTER TABLE reserva
+  ADD COLUMN fecha_retiro DATETIME NULL AFTER fecha_reserva;
+
+
