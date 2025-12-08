@@ -1,5 +1,5 @@
 <?php
-// Ajusta la ruta si db_conexion.php está en otra carpeta
+// para que esto funcione el db_conexion ya debio agregarsele el puerto correcto segun su computadora
 require_once 'articulos/db_conexion.php';
 
 header('Content-Type: application/json; charset=utf-8');
