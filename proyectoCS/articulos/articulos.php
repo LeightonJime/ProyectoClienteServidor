@@ -28,6 +28,21 @@
 
 <body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
 
+<!--Jose Acuna-->
+
+<?php
+require_once 'db_conexion.php';
+
+// Consulta de los libros (usamos todas las columnas)
+$sql = "SELECT isbn, titulo, escritor, anno, descr, tipo FROM libro ORDER BY anno DESC";
+$resultadoLibros = $conexion->query($sql);
+
+// Total de libros para mostrarlo en "Ver X más"
+$totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
+?>
+
+
+
   <!-- jQuery (script.js y menú) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -137,114 +152,48 @@
   <main id="listado-articulos" class="padding-medium articulos-page">
     <div class="container-fluid">
 
-      <!-- Bloque: Artículo -->
-      <section class="articulos-section">
-        <div class="articulos-section-header">
-          <h2 class="articulos-title">Artículo</h2>
-          <a href="#" class="articulos-ver-mas">
-            Ver 2660 más <span class="icon icon-arrow-down"></span>
+     <div class="articulos-grid">
+  <?php if ($resultadoLibros && $resultadoLibros->num_rows > 0): ?>
+
+    <?php while ($libro = $resultadoLibros->fetch_assoc()): ?>
+      <article class="articulo-card">
+
+        <figure class="articulo-cover">
+          <img
+            src="images/libros/<?php echo htmlspecialchars($libro['isbn'], ENT_QUOTES, 'UTF-8'); ?>.jpg"
+            alt="<?php echo htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8'); ?>">
+        </figure>
+
+        <div class="articulo-info">
+
+          <h3 class="articulo-autor">
+            <?php echo htmlspecialchars($libro['escritor'], ENT_QUOTES, 'UTF-8'); ?>
+          </h3>
+
+          <!-- Tipo ahora viene 100% desde la BD -->
+          <a href="#" class="articulo-tipo">
+            <?php echo htmlspecialchars($libro['tipo'], ENT_QUOTES, 'UTF-8'); ?>
           </a>
+
+          <span class="articulo-anio">
+            <?php echo htmlspecialchars($libro['anno'], ENT_QUOTES, 'UTF-8'); ?>
+          </span>
+
+          <p class="articulo-descr">
+            <?php echo htmlspecialchars($libro['descr'], ENT_QUOTES, 'UTF-8'); ?>
+          </p>
+
         </div>
+      </article>
+    <?php endwhile; ?>
 
-        <div class="articulos-grid">
+  <?php else: ?>
+    <p>No hay artículos disponibles.</p>
+  <?php endif; ?>
+</div>
 
-          <!-- CARD 1 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-01.jpg" alt="Portada 1833–1883">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Manuel A. Alonso</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1849</span>
-            </div>
-          </article>
+ 
 
-          <!-- CARD 2 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-02.jpg" alt="20 curiosidades sobre la vida...">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Hipertextual</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">2012</span>
-            </div>
-          </article>
-
-          <!-- CARD 3 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-03.jpg" alt="210 colombianos dicen">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Néstor Alejandro Par...</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">2010</span>
-            </div>
-          </article>
-
-          <!-- CARD 4 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-04.jpg" alt="La nueva Granada y movimiento independentista">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Ana Milena Valdés Pe...</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">2011</span>
-            </div>
-          </article>
-
-          <!-- CARD 5 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-05.jpg" alt="A 150 años de la primera edición...">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Astrid Donoso Henrí...</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">2016</span>
-            </div>
-          </article>
-
-          <!-- CARD 6 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-06.jpg" alt="Abecedario andaluz">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Antonio Rodríguez Al...</h3>
-              <a href="#" class="articulo-tipo">Artículo – Compilación</a>
-              <span class="articulo-anio">1999</span>
-            </div>
-          </article>
-
-          <!-- CARD 7 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-07.jpg" alt="Abismados en la noche">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Elena Bisso</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">2010</span>
-            </div>
-          </article>
-
-          <!-- CARD 8 -->
-          <article class="articulo-card">
-            <figure class="articulo-cover">
-              <img src="images/articulo-08.jpg" alt="Acerca de la extrañez sanjuanista">
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">María Jesús Mancho...</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1991</span>
-            </div>
-          </article>
-
-        </div><!-- /.articulos-grid -->
       </section>
 
       <!-- Bloque: Artículo en audio -->
@@ -350,6 +299,11 @@
 
   <!-- JS específico para esta página (por ahora ligero) -->
   <script src="js/articulos.js"></script>
+
+  <?php
+$conexion->close();
+?>
+
 
 </body>
 
