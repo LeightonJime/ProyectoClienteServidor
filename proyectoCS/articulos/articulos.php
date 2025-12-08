@@ -33,11 +33,11 @@
 <?php
 require_once 'db_conexion.php';
 
-// Consulta de los libros (usamos todas las columnas)
-$sql = "SELECT isbn, titulo, escritor, anno, descr, tipo FROM libro ORDER BY anno DESC";
-$resultadoLibros = $conexion->query($sql);
+$sql = "SELECT isbn, titulo, escritor, anno, descr, tipo, estado
+        FROM libro
+        ORDER BY anno DESC";
 
-// Total de libros para mostrarlo en "Ver X más"
+$resultadoLibros = $conexion->query($sql);
 $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
 ?>
 
@@ -104,24 +104,11 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
                   <li class="menu-item">
                     <a href="../index.html#home" class="nav-link">Inicio</a>
                   </li>
-                  <li class="menu-item has-sub">
-                    <a href="../index.html#pages" class="nav-link">Páginas</a>
-                    <ul>
-                      <li><a href="../index.html">Inicio</a></li>
-                      <li><a href="../index.html">Acerca de</a></li>
-                      <li><a href="../index.html">Estilos</a></li>
-                      <li><a href="../index.html">Blog</a></li>
-                      <li><a href="../index.html">Entrada</a></li>
-                      <li><a href="../index.html">Tienda</a></li>
-                      <li><a href="../index.html">Producto</a></li>
-                      <li><a href="../index.html">Contacto</a></li>
-                      <li><a href="../index.html">Gracias</a></li>
-                    </ul>
-                  </li>
+                 
                   <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
                   <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
-                  <li class="menu-item"><a href="../index.html#latest-blog" class="nav-link">Artículos</a></li>
+                  <li class="menu-item"><a href="../index.html#latest-blog" class="nav-link">Libros</a></li>
                   <li class="menu-item"><a href="../index.html#download-app" class="nav-link">Descargar App</a></li>
 
                   <!-- Página actual -->
@@ -170,7 +157,6 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
             <?php echo htmlspecialchars($libro['escritor'], ENT_QUOTES, 'UTF-8'); ?>
           </h3>
 
-          <!-- Tipo ahora viene 100% desde la BD -->
           <a href="#" class="articulo-tipo">
             <?php echo htmlspecialchars($libro['tipo'], ENT_QUOTES, 'UTF-8'); ?>
           </a>
@@ -183,6 +169,19 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
             <?php echo htmlspecialchars($libro['descr'], ENT_QUOTES, 'UTF-8'); ?>
           </p>
 
+          <!-- NUEVO: zona de reserva -->
+          <div class="articulo-reserva">
+            <?php if ($libro['estado'] === 'DISPONIBLE'): ?>
+              <a
+                href="reservar.php?isbn=<?php echo urlencode($libro['isbn']); ?>"
+                class="btn-reservar">
+                Reservar
+              </a>
+            <?php else: ?>
+              <span class="estado-no-disponible">No disponible</span>
+            <?php endif; ?>
+          </div>
+
         </div>
       </article>
     <?php endwhile; ?>
@@ -192,98 +191,9 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
   <?php endif; ?>
 </div>
 
- 
-
       </section>
 
-      <!-- Bloque: Artículo en audio -->
-      <section class="articulos-section articulos-section-audio">
-        <div class="articulos-section-header">
-          <h2 class="articulos-title">Artículo en audio</h2>
-          <a href="#" class="articulos-ver-mas">
-            Ver 81 más <span class="icon icon-arrow-down"></span>
-          </a>
-        </div>
-
-        <div class="articulos-grid">
-
-          <!-- AUDIO 1 -->
-          <article class="articulo-card articulo-card-audio">
-            <figure class="articulo-cover">
-              <img src="images/audio-01.jpg" alt="Diciembre">
-              <span class="articulo-icon-audio">
-                <i class="icon icon-play"></i>
-              </span>
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Juan Valera</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1824–1905</span>
-            </div>
-          </article>
-
-          <!-- AUDIO 2 -->
-          <article class="articulo-card articulo-card-audio">
-            <figure class="articulo-cover">
-              <img src="images/audio-02.jpg" alt="Alma vasca">
-              <span class="articulo-icon-audio">
-                <i class="icon icon-play"></i>
-              </span>
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Miguel de Unamuno</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1904</span>
-            </div>
-          </article>
-
-          <!-- AUDIO 3 -->
-          <article class="articulo-card articulo-card-audio">
-            <figure class="articulo-cover">
-              <img src="images/audio-03.jpg" alt="Al pie del Maladeta">
-              <span class="articulo-icon-audio">
-                <i class="icon icon-play"></i>
-              </span>
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Miguel de Unamuno</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1919</span>
-            </div>
-          </article>
-
-          <!-- AUDIO 4 -->
-          <article class="articulo-card articulo-card-audio">
-            <figure class="articulo-cover">
-              <img src="images/audio-04.jpg" alt="A la memoria de Miguel de Cervantes">
-              <span class="articulo-icon-audio">
-                <i class="icon icon-play"></i>
-              </span>
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Gustavo Adolfo Bécq...</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1836–1870</span>
-            </div>
-          </article>
-
-          <!-- AUDIO 5 -->
-          <article class="articulo-card articulo-card-audio">
-            <figure class="articulo-cover">
-              <img src="images/audio-05.jpg" alt="Kafka y sus precursores">
-              <span class="articulo-icon-audio">
-                <i class="icon icon-play"></i>
-              </span>
-            </figure>
-            <div class="articulo-info">
-              <h3 class="articulo-autor">Jorge Luis Borges</h3>
-              <a href="#" class="articulo-tipo">Artículo</a>
-              <span class="articulo-anio">1952</span>
-            </div>
-          </article>
-
-        </div><!-- /.articulos-grid -->
-      </section>
+     
 
     </div><!-- /.container-fluid -->
   </main>
