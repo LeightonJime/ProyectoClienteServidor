@@ -1,0 +1,26 @@
+Guia
+
+En phpMyAdmin:
+
+1. Entra a la base biblioheredia.
+2. Hacer clic en la tabla libro.
+3. Ir a la pestaña SQL.
+
+Pegar y ejecutar este comando:
+
+ALTER TABLE libro
+  ADD COLUMN tipo   VARCHAR(50)  NOT NULL AFTER descr,
+  ADD COLUMN imagen VARCHAR(255) NOT NULL AFTER tipo;
+
+En libro 
+
+UPDATE libro SET tipo = 'Novela'  WHERE isbn = '9789930519837';
+UPDATE libro SET tipo = 'Novela'  WHERE isbn = '9789930534106';
+UPDATE libro SET tipo = 'Infantil' WHERE isbn = '9789968534079';
+UPDATE libro SET tipo = 'Infantil' WHERE isbn = '9789968960328';
+UPDATE libro SET tipo = 'Infantil' WHERE isbn = '9789968960359';
+UPDATE libro SET tipo = 'Novela'   WHERE isbn = '9789977239156';
+UPDATE libro SET tipo = 'Novela'   WHERE isbn = '9789977239279';
+UPDATE libro SET tipo = 'Cuentos'  WHERE isbn = '9789977239453';
+UPDATE libro SET tipo = 'Cuentos'  WHERE isbn = '9789977239606';
+UPDATE libro SET tipo = 'Cuentos'  WHERE isbn = '9789977583648';
