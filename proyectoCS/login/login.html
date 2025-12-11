@@ -8,8 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Estilos del proyecto -->
   <link rel="stylesheet" type="text/css" href="../css/normalize.css">
@@ -29,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="../js/script.js"></script>
 
-    <!-- Header idéntico al index -->
+    <!-- Header -->
     <div id="header-wrap">
       <div class="top-content">
         <div class="container-fluid">
@@ -40,7 +39,6 @@
                   <li><a href="#"><i class="icon icon-facebook"></i></a></li>
                   <li><a href="#"><i class="icon icon-twitter"></i></a></li>
                   <li><a href="#"><i class="icon icon-youtube-play"></i></a></li>
-                  <li><a href="#"><i class="icon icon-behance-square"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -50,17 +48,6 @@
                   <i class="icon icon-user"></i>
                   <span>Cuenta</span>
                 </a>
-                
-                <div class="action-menu">
-                  <div class="search-bar">
-                    <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
-                      <i class="icon icon-search"></i>
-                    </a>
-                    <form role="search" method="get" class="search-box">
-                      <input class="search-field text search-input" placeholder="Buscar" type="search">
-                    </form>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -80,31 +67,11 @@
                 <div class="main-menu stellarnav">
                   <ul class="menu-list">
                     <li class="menu-item"><a href="../index.html">Inicio</a></li>
-                    <li class="menu-item has-sub">
-                      <a href="#" class="nav-link">Páginas</a>
-                      <ul>
-                        <li><a href="../index.html">Inicio</a></li>
-                        <li><a href="../index.html">Acerca de</a></li>
-                        <li><a href="../index.html">Estilos</a></li>
-                        <li><a href="../index.html">Blog</a></li>
-                        <li><a href="../index.html">Entrada</a></li>
-                        <li><a href="../index.html">Tienda</a></li>
-                        <li><a href="../index.html">Producto</a></li>
-                        <li><a href="../index.html">Contacto</a></li>
-                        <li><a href="../index.html">Gracias</a></li>
-                      </ul>
-                    </li>
                     <li class="menu-item"><a href="../index.html#featured-books">Destacados</a></li>
                     <li class="menu-item"><a href="../index.html#popular-books">Populares</a></li>
-                    <li class="menu-item"><a href="../index.html#special-offer">Ofertas</a></li>
                     <li class="menu-item"><a href="../articulos/articulos.html">Artículos</a></li>
                     <li class="menu-item"><a href="../index.html#download-app">Descargar App</a></li>
                   </ul>
-                  <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                  </div>
                 </div>
               </nav>
             </div>
@@ -122,7 +89,9 @@
             <div class="login-card text-center">
               <i class="icon icon-user-circle mb-3"></i>
               <h2 class="mb-4">Iniciar Sesión</h2>
-              <form action="../login.php" method="post">
+
+              <!-- FORMULARIO CORREGIDO -->
+              <form action="login.php" method="post">
                 <div class="mb-3 text-start">
                   <label for="email" class="form-label">Email</label>
                   <input type="text" id="email" name="email" class="form-control" placeholder="tu@email.com"
@@ -137,26 +106,20 @@
                   <button type="submit" class="btn btn-login">Iniciar sesión</button>
                 </div>
               </form>
-              <p>¿No tienes cuenta? <a href="Registrarse.html">Regístrate aquí</a></p>
+
+              <p>¿No tienes cuenta?  
+                <a href="registrarse.php">Regístrate aquí</a>
+              </p>
+
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer (igual que en index.html) -->
     <footer class="footer">
-      <div class="container">
-        <div class="row text-center">
-          <div class="col-md-12">
-            <p>&copy; 2025 Biblioteca Pública de Heredia. Todos los derechos reservados.</p>
-            <ul class="social-links">
-              <li><a href="#"><i class="icon icon-facebook"></i></a></li>
-              <li><a href="#"><i class="icon icon-twitter"></i></a></li>
-              <li><a href="#"><i class="icon icon-youtube-play"></i></a></li>
-            </ul>
-          </div>
-        </div>
+      <div class="container text-center">
+        <p>&copy; 2025 Biblioteca Pública de Heredia. Todos los derechos reservados.</p>
       </div>
     </footer>
 
