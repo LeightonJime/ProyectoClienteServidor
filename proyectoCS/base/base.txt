@@ -59,10 +59,104 @@ create table prestamo(
 
 
 ----------------------
-Uso de github 
+En phpMyAdmin:
 
------
-Test
+1. Entra a la base biblioheredia.
+2. Hacer clic en la tabla libro.
+3. Ir a la pestaña SQL.
 
-------
-prueba
+Pegar y ejecutar este comando:
+
+ALTER TABLE libro
+  ADD COLUMN tipo   VARCHAR(50)  NOT NULL AFTER descr,
+  ADD COLUMN imagen VARCHAR(255) NOT NULL AFTER tipo;
+
+En libro 
+
+UPDATE libro SET tipo = 'Novela'  WHERE isbn = '9789930519837';
+UPDATE libro SET tipo = 'Novela'  WHERE isbn = '9789930534106';
+UPDATE libro SET tipo = 'Infantil' WHERE isbn = '9789968534079';
+UPDATE libro SET tipo = 'Infantil' WHERE isbn = '9789968960328';
+UPDATE libro SET tipo = 'Infantil' WHERE isbn = '9789968960359';
+UPDATE libro SET tipo = 'Novela'   WHERE isbn = '9789977239156';
+UPDATE libro SET tipo = 'Novela'   WHERE isbn = '9789977239279';
+UPDATE libro SET tipo = 'Cuentos'  WHERE isbn = '9789977239453';
+UPDATE libro SET tipo = 'Cuentos'  WHERE isbn = '9789977239606';
+UPDATE libro SET tipo = 'Cuentos'  WHERE isbn = '9789977583648';
+
+
+---------------------------------------------------------------------
+
+En phpMyAdmin:
+
+1. Entra a la base biblioheredia.
+2. Ir a la pestaña SQL.
+
+Libros destacados
+
+CREATE TABLE libros_destacados (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo     VARCHAR(150) NOT NULL,
+  subtitulo  VARCHAR(150) NOT NULL,
+  imagen     VARCHAR(255) NOT NULL
+);
+
+Libros populares
+
+CREATE TABLE libros_populares (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo     VARCHAR(150) NOT NULL,
+  subtitulo  VARCHAR(150) NOT NULL,
+  imagen     VARCHAR(255) NOT NULL
+);
+
+Insertar libros
+
+INSERT INTO libros_destacados (titulo, subtitulo, imagen) VALUES
+('Don Quijote De La Mancha', 'Clásico literario',      'images/don-quijote.jpg'),
+('Los Pájaros Serán Felices', 'Happy Book',            'images/main-banner2.jpg'),
+('Edición Especial Quijote',  'Versión premium',       'images/edicision-especial.jpg'),
+('Happy Book Deluxe',         'Edición limitada',      'images/happy-book.jpg'),
+('El Principito',             'Ficción filosófica',    'images/principito.jpg'),
+('Cien Años de Soledad',      'Realismo mágico',       'images/ciensoledad.jpg'),
+('La Odisea',                 'Épico clásico',         'images/odisea.jpg');
+
+
+INSERT INTO libros_populares (titulo, subtitulo, imagen) VALUES
+('Don Quijote De La Mancha', 'Clásico literario',      'images/don-quijote.jpg'),
+('Los Pájaros Serán Felices', 'Happy Book',            'images/main-banner2.jpg'),
+('Edición Especial Quijote',  'Versión premium',       'images/edicision-especial.jpg'),
+('Happy Book Deluxe',         'Edición limitada',      'images/happy-book.jpg'),
+('El Principito',             'Ficción filosófica',    'images/principito.jpg'),
+('Cien Años de Soledad',      'Realismo mágico',       'images/ciensoledad.jpg'),
+('La Odisea',                 'Épico clásico',         'images/odisea.jpg');
+
+
+---------------------------------------------------------------------
+
+Indicaciones para hisotrias de usuario
+
+1. En phpMyAdmin 
+2. biblioheredia 
+3. SQL, ejecutar:
+
+ALTER TABLE libro
+  ADD COLUMN estado ENUM('DISPONIBLE','RESERVADO') NOT NULL DEFAULT 'DISPONIBLE';
+
+Crear tabla de reservas
+
+ahi mismo en biblioheredia
+
+CREATE TABLE reserva (
+  id_reserva INT AUTO_INCREMENT PRIMARY KEY,
+  isbn       VARCHAR(20) NOT NULL,
+  nombre     VARCHAR(100) NOT NULL,
+  correo     VARCHAR(100) NOT NULL,
+  fecha_reserva DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  estado     ENUM('PENDIENTE','RETIRADO','CANCELADA') NOT NULL DEFAULT 'PENDIENTE',
+  CONSTRAINT fk_reserva_libro FOREIGN KEY (isbn) REFERENCES libro(isbn)
+);
+
+
+ALTER TABLE reserva
+  ADD COLUMN fecha_retiro DATETIME NULL AFTER fecha_reserva;
