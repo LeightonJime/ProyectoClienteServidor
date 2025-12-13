@@ -1,0 +1,8 @@
+use biblioheredia;
+create table anuncio(
+    id_anuncio int auto_increment primary key,
+    a_titulo varchar(100) not null,
+    a_descripcion varchar(255) not null,
+    a_fecha date,
+    a_img varchar(255)
+);
