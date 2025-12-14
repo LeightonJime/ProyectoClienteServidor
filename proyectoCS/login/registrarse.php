@@ -1,6 +1,7 @@
 <?php
 session_start();
-include '../conn.php';
+include '../articulos/db_conexion.php';
+
 
 // Validar datos
 if (!isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm-password'])) {
