@@ -1,4 +1,14 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+$nombreSesion = $_SESSION['session_usuario_nombre'] ?? '';
+$emailSesion  = $_SESSION['session_usuario_email'] ?? '';
+$idUsuario    = $_SESSION['session_id_usuario'] ?? null;
+?>
+
+<?php
 require_once __DIR__ . '/../articulos/db_conexion.php';
 
 // 1) Validar ISBN
@@ -30,11 +40,13 @@ if ($libro['estado'] !== 'DISPONIBLE') {
 $mensaje = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['nombre'] ?? "");
-    $correo = trim($_POST['correo'] ?? "");
+
+    // Usar datos del usuario logueado (sesión), no del formulario
+    $nombre = $nombreSesion ?? '';
+    $correo = $emailSesion ?? '';
 
     if ($nombre === "" || $correo === "") {
-        $mensaje = "Por favor complete todos los campos.";
+        $mensaje = "Sesión inválida. Vuelva a iniciar sesión.";
     } else {
 
         $sqlReserva = "INSERT INTO reserva (isbn, nombre, correo)
@@ -54,6 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -92,21 +106,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <div class="col-md-6">
-            <div class="right-element">
-              <a href="../login/login.html">Cuenta</a>
+           <div class="right-element">
+  <div id="session-area" data-endpoint="../login/header_session.php?base=../"></div>
 
-              <div class="action-menu">
-                <div class="search-bar">
-                  <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
-                    <i class="icon icon-search"></i>
-                  </a>
-                  <form role="search" method="get" class="search-box">
-                    <input class="search-field text search-input" placeholder="Buscar" type="search">
-                  </form>
-                </div>
-              </div>
+</div>
 
-            </div>
           </div>
 
         </div>
@@ -130,9 +134,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <li class="menu-item"><a href="../index.html#home" class="nav-link">Inicio</a></li>
                   <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
-                  <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
+                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Ofertas</a></li>
                   <li class="menu-item"><a href="../articulos/articulos.php" class="nav-link">Libros</a></li>
-                  
+                  <li class="menu-item"><a href="../calificaciones/calificaciones.php" class="nav-link">Calificaciones</a></li>
                   </li>
                   <li class="menu-item"><a href="../tablon/Anuncio.php" class="nav-link">Anuncios y actividades</a></li>
                   
@@ -186,23 +190,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
           <?php endif; ?>
 
-          <form method="post">
+         <form method="post">
 
-            <div class="mb-3">
-              <label class="form-label">Nombre completo</label>
-              <input type="text" name="nombre" class="form-control" required>
-            </div>
+  <div class="mb-3">
+    <label class="form-label">Nombre completo</label>
+    <input type="text"
+           name="nombre"
+           class="form-control"
+           value="<?php echo htmlspecialchars($nombreSesion); ?>"
+           <?php echo ($nombreSesion !== '') ? 'readonly' : 'required'; ?>>
+  </div>
 
-            <div class="mb-3">
-              <label class="form-label">Correo electrónico</label>
-              <input type="email" name="correo" class="form-control" required>
-            </div>
+  <div class="mb-3">
+    <label class="form-label">Correo electrónico</label>
+    <input type="email"
+           name="correo"
+           class="form-control"
+           value="<?php echo htmlspecialchars($emailSesion); ?>"
+           <?php echo ($emailSesion !== '') ? 'readonly' : 'required'; ?>>
+  </div>
 
-            <button type="submit" class="btn btn-primary">
-              Confirmar reserva
-            </button>
+  <button type="submit" class="btn btn-primary">
+    Confirmar reserva
+  </button>
 
-          </form>
+</form>
+
+
 
         <?php endif; ?>
 
@@ -213,6 +227,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/script.js"></script>
+<script src="../js/session-header.js"></script>
+
+
 
 </body>
 </html>
