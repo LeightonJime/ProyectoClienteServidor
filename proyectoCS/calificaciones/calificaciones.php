@@ -90,7 +90,7 @@ $result = $conexion->query($sql);
                   <li class="menu-item active">
                     <a href="calificaciones.php" class="nav-link">Calificaciones</a>
                   </li>
-                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Anuncios y actividades</a></li>
+                  <li class="menu-item"><a href="../tablon/Anuncio.php" class="nav-link">Anuncios y actividades</a></li>
                   
 
                   
