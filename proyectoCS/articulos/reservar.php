@@ -41,12 +41,11 @@ $mensaje = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Usar datos del usuario logueado (sesión), no del formulario
-    $nombre = $nombreSesion ?? '';
-    $correo = $emailSesion ?? '';
+    $nombre = ($nombreSesion !== '') ? $nombreSesion : trim($_POST['nombre'] ?? '');
+    $correo = ($emailSesion  !== '') ? $emailSesion  : trim($_POST['correo'] ?? '');
 
     if ($nombre === "" || $correo === "") {
-        $mensaje = "Sesión inválida. Vuelva a iniciar sesión.";
+        $mensaje = "Por favor complete nombre y correo.";
     } else {
 
         $sqlReserva = "INSERT INTO reserva (isbn, nombre, correo)
@@ -65,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensaje = "¡Reserva realizada con éxito! Puede pasar a recoger el libro en la biblioteca.";
     }
 }
+
 ?>
 
 
@@ -195,19 +195,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="mb-3">
     <label class="form-label">Nombre completo</label>
     <input type="text"
-           name="nombre"
-           class="form-control"
-           value="<?php echo htmlspecialchars($nombreSesion); ?>"
-           <?php echo ($nombreSesion !== '') ? 'readonly' : 'required'; ?>>
+       name="nombre"
+       class="form-control"
+       value="<?php echo htmlspecialchars($nombreSesion); ?>"
+       <?php echo ($nombreSesion !== '') ? 'readonly' : 'required'; ?>>
+
   </div>
 
   <div class="mb-3">
     <label class="form-label">Correo electrónico</label>
     <input type="email"
-           name="correo"
-           class="form-control"
-           value="<?php echo htmlspecialchars($emailSesion); ?>"
-           <?php echo ($emailSesion !== '') ? 'readonly' : 'required'; ?>>
+       name="correo"
+       class="form-control"
+       value="<?php echo htmlspecialchars($emailSesion); ?>"
+       <?php echo ($emailSesion !== '') ? 'readonly' : 'required'; ?>>
+
   </div>
 
   <button type="submit" class="btn btn-primary">

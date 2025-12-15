@@ -43,17 +43,31 @@ $stmt->bind_param("sss", $username, $email, $password_hash);
 
 if ($stmt->execute()) {
 
-    // Crear sesión automáticamente
-    $_SESSION['session_id_usuario'] = $stmt->insert_id;
-    $_SESSION['session_usuario_nombre'] = $username;
+    $newId = $conexion->insert_id; // id real insertado
 
-    // Redirigir al inicio
+    // Volver a leer el usuario recién creado (infalible)
+    $sql2 = "SELECT id_usuario, username, email FROM usuarios WHERE id_usuario = ?";
+    $stmt2 = $conexion->prepare($sql2);
+    $stmt2->bind_param("i", $newId);
+    $stmt2->execute();
+    $user = $stmt2->get_result()->fetch_assoc();
+    $stmt2->close();
+
+    // Crear sesión automáticamente (completa)
+    $_SESSION['session_id_usuario']     = $user['id_usuario'];
+    $_SESSION['session_usuario_nombre'] = $user['username'];
+    $_SESSION['session_usuario_email']  = $user['email'];
+
+    // (Opcional recomendado) asegurar que se escriba la sesión antes del redirect
+    session_write_close();
+
     header("Location: ../index.html");
     exit();
 
 } else {
     echo "Error al crear la cuenta: " . $conexion->error;
 }
+
 
 $stmt->close();
 $conexion->close();
