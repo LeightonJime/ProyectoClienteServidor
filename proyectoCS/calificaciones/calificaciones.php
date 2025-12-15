@@ -47,20 +47,9 @@ $result = $conexion->query($sql);
 
           <div class="col-md-6">
             <div class="right-element">
-              <a href="../login/login.html">Cuenta</a>
+  <div id="session-area" data-endpoint="../login/header_session.php?base=../"></div>
+</div>
 
-              <div class="action-menu">
-                <div class="search-bar">
-                  <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
-                    <i class="icon icon-search"></i>
-                  </a>
-                  <form role="search" method="get" class="search-box">
-                    <input class="search-field text search-input" placeholder="Buscar" type="search">
-                  </form>
-                </div>
-              </div>
-
-            </div>
           </div>
 
         </div>
@@ -84,7 +73,7 @@ $result = $conexion->query($sql);
                   <li class="menu-item"><a href="../index.html#home" class="nav-link">Inicio</a></li>
                   <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
-                  <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
+                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Ofertas</a></li>
                   <li class="menu-item"><a href="../articulos/articulos.php" class="nav-link">Libros</a></li>
                   <!-- Página actual -->
                   <li class="menu-item active">
@@ -173,6 +162,8 @@ $result = $conexion->query($sql);
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/script.js"></script>
+  <script src="../js/session-header.js"></script>
+
 
   <?php $conexion->close(); ?>
 </body>
