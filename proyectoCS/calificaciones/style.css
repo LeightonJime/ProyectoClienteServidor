@@ -1,0 +1,69 @@
+/* =========================
+   Calificaciones – Compacto
+   SOLO contenido (NO NAV)
+   ========================= */
+
+/* Todo lo compacto vive dentro de main */
+main {
+  font-size: 14px;
+  line-height: 1.45;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+/* Detalle del libro */
+main .libro-detalle h1 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+main .libro-detalle p {
+  font-size: 14px;
+  margin-bottom: 3px;
+  line-height: 1.35;
+}
+
+main .libro-detalle strong {
+  font-weight: 600;
+}
+
+/* Secciones */
+main h2 {
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 6px;
+}
+
+main h3 {
+  font-size: 15px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+/* Opiniones */
+main .opinion {
+  margin-bottom: 6px;
+}
+
+main .opinion small {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Separadores */
+main hr {
+  margin: 10px 0;
+}
+
+/* Formulario */
+main select,
+main textarea,
+main button {
+  font-size: 14px;
+}
+
+main textarea {
+  padding: 6px;
+}
+
+
