@@ -1,15 +1,13 @@
 <?php
-require_once 'db_conexion.php';
+require_once __DIR__ . '/../articulos/db_conexion.php';
 
-// 1) Validar que venga un ISBN por GET
-
+// 1) Validar ISBN
 if (!isset($_GET['isbn'])) {
     die("Falta el parámetro ISBN.");
 }
 $isbn = $_GET['isbn'];
 
-
-// 2) Obtener los datos del libro
+// 2) Obtener datos del libro
 $sqlLibro = "SELECT isbn, titulo, escritor, estado
              FROM libro
              WHERE isbn = ?";
@@ -28,7 +26,7 @@ if ($libro['estado'] !== 'DISPONIBLE') {
     die("Este libro ya está reservado o no disponible.");
 }
 
-// 3) Si el formulario fue enviado (POST), procesar la reserva
+// 3) Procesar reserva
 $mensaje = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,14 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($nombre === "" || $correo === "") {
         $mensaje = "Por favor complete todos los campos.";
     } else {
-        // Insertar en tabla reserva
+
         $sqlReserva = "INSERT INTO reserva (isbn, nombre, correo)
                        VALUES (?, ?, ?)";
         $stmtRes = $conexion->prepare($sqlReserva);
         $stmtRes->bind_param("sss", $isbn, $nombre, $correo);
         $stmtRes->execute();
 
-        // Marcar el libro como RESERVADO
         $sqlUpdate = "UPDATE libro
                       SET estado = 'RESERVADO'
                       WHERE isbn = ?";
@@ -61,40 +58,163 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Reservar libro</title>
-  <link rel="stylesheet" href="css/articulos.css">
+  <title>Reservar libro - Biblioteca Pública de Heredia</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS globales -->
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../css/vendor.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
-<body>
 
-<h1>Reservar libro</h1>
+<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
 
-<h2><?php echo htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8'); ?></h2>
-<p><strong>Autor:</strong> <?php echo htmlspecialchars($libro['escritor'], ENT_QUOTES, 'UTF-8'); ?></p>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<?php if ($mensaje !== "" && strpos($mensaje, "éxito") !== false): ?>
-  <p style="color:green;"><?php echo $mensaje; ?></p>
-  <p><a href="articulos.php">Volver a la lista de libros disponibles</a></p>
-<?php else: ?>
+<!-- Header Wrap (mismo look del sitio) -->
+  <div id="header-wrap">
 
-  <?php if ($mensaje !== ""): ?>
-    <p style="color:red;"><?php echo $mensaje; ?></p>
-  <?php endif; ?>
+    <div class="top-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="social-links">
+              <ul>
+                <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon icon-youtube-play"></i></a></li>
+                <li><a href="#"><i class="icon icon-behance-square"></i></a></li>
+              </ul>
+            </div>
+          </div>
 
-  <form method="post">
-    <label>
-      Nombre completo:<br>
-      <input type="text" name="nombre" required>
-    </label>
-    <br><br>
-    <label>
-      Correo electrónico:<br>
-      <input type="email" name="correo" required>
-    </label>
-    <br><br>
-    <button type="submit">Confirmar reserva</button>
-  </form>
+          <div class="col-md-6">
+            <div class="right-element">
+              <a href="../login/login.html">Cuenta</a>
 
-<?php endif; ?>
+              <div class="action-menu">
+                <div class="search-bar">
+                  <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
+                    <i class="icon icon-search"></i>
+                  </a>
+                  <form role="search" method="get" class="search-box">
+                    <input class="search-field text search-input" placeholder="Buscar" type="search">
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <header id="header">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-md-2">
+            <div class="main-logo">
+              <a href="../index.html"><img src="../images/main-logo.png" alt="logo"></a>
+            </div>
+          </div>
+
+          <div class="col-md-10">
+            <nav id="navbar">
+              <div class="main-menu stellarnav">
+                <ul class="menu-list">
+                  <li class="menu-item"><a href="../index.html#home" class="nav-link">Inicio</a></li>
+                  <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
+                  <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
+                  <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
+                  <li class="menu-item"><a href="../articulos/articulos.php" class="nav-link">Libros</a></li>
+                  
+                  </li>
+                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Anuncios y actividades</a></li>
+                  
+
+                  
+                </ul>
+
+                <div class="hamburger">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </div>
+
+              </div>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+  </div><!-- /#header-wrap -->
+
+<!-- CONTENIDO -->
+<main class="padding-medium">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 col-xl-6 mx-auto">
+
+        <h2 class="mb-1">Reservar libro</h2>
+        <p class="text-muted mb-4">
+          <?php echo htmlspecialchars($libro['titulo']); ?> —
+          <?php echo htmlspecialchars($libro['escritor']); ?>
+        </p>
+
+        <?php if ($mensaje !== "" && str_contains($mensaje, "éxito")): ?>
+
+          <div class="alert alert-success">
+            <?php echo $mensaje; ?>
+          </div>
+
+          <a href="../articulos/articulos.php" class="btn btn-secondary btn-sm">
+            Volver a libros
+          </a>
+
+        <?php else: ?>
+
+          <?php if ($mensaje !== ""): ?>
+            <div class="alert alert-danger">
+              <?php echo $mensaje; ?>
+            </div>
+          <?php endif; ?>
+
+          <form method="post">
+
+            <div class="mb-3">
+              <label class="form-label">Nombre completo</label>
+              <input type="text" name="nombre" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Correo electrónico</label>
+              <input type="email" name="correo" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Confirmar reserva
+            </button>
+
+          </form>
+
+        <?php endif; ?>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/script.js"></script>
 
 </body>
 </html>
+
+<?php $conexion->close(); ?>

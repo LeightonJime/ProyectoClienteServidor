@@ -108,13 +108,12 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
                   <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
                   <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
-                  <li class="menu-item"><a href="../index.html#latest-blog" class="nav-link">Libros</a></li>
-                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Anuncios</a></li>
-
                   <!-- Página actual -->
                   <li class="menu-item active">
-                    <a href="#listado-articulos" class="nav-link">Artículos (catálogo)</a>
+                    <a href="#listado-articulos" class="nav-link">Libros</a>
                   </li>
+                  <li class="menu-item"><a href="../calificaciones/calificaciones.php" class="nav-link">Calificaciones</a></li>
+                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Anuncios y actividades</a></li> 
                 </ul>
 
                 <div class="hamburger">
