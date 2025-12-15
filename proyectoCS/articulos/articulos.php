@@ -65,22 +65,10 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
 
           <div class="col-md-6">
             <div class="right-element">
+  <div id="session-area" data-endpoint="../login/header_session.php?base=../"></div>
 
-              <a href="../login/login.html">Cuenta</a>
+</div>
 
-
-              <div class="action-menu">
-                <div class="search-bar">
-                  <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
-                    <i class="icon icon-search"></i>
-                  </a>
-                  <form role="search" method="get" class="search-box">
-                    <input class="search-field text search-input" placeholder="Buscar" type="search">
-                  </form>
-                </div>
-              </div>
-
-            </div>
           </div>
 
         </div>
@@ -107,7 +95,7 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
                  
                   <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
-                  <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
+                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Ofertas</a></li>
                   <!-- Página actual -->
                   <li class="menu-item active">
                     <a href="#listado-articulos" class="nav-link">Libros</a>
@@ -205,9 +193,13 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
     crossorigin="anonymous"></script>
 
   <script src="../js/script.js"></script>
+  
+
 
   <!-- JS específico para esta página (por ahora ligero) -->
   <script src="js/articulos.js"></script>
+  <script src="../js/session-header.js"></script>
+
 
   <?php
 $conexion->close();
