@@ -132,14 +132,14 @@ $ratings = $stmt2->get_result();
                   <li class="menu-item"><a href="../index.html#featured-books" class="nav-link">Destacados</a></li>
                   <li class="menu-item"><a href="../index.html#popular-books" class="nav-link">Populares</a></li>
                   <li class="menu-item"><a href="../index.html#special-offer" class="nav-link">Ofertas</a></li>
-                  <li class="menu-item"><a href="../articulos/index.php" class="nav-link">Libros</a></li>
+                  <li class="menu-item"><a href="../articulos/articulos.php" class="nav-link">Libros</a></li>
 
                   <!-- Página actual -->
                   <li class="menu-item active">
                     <a href="calificaciones.php" class="nav-link">Calificaciones</a>
                   </li>
 
-                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Anuncios y actividades</a></li>
+                  <li class="menu-item"><a href="../tablon/Anuncio.php" class="nav-link">Anuncios y actividades</a></li>
                 </ul>
 
                 <div class="hamburger">
