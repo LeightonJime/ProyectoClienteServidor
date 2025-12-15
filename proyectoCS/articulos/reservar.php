@@ -6,6 +6,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 $nombreSesion = $_SESSION['session_usuario_nombre'] ?? '';
 $emailSesion  = $_SESSION['session_usuario_email'] ?? '';
 $idUsuario    = $_SESSION['session_id_usuario'] ?? null;
+// ✅ REQUERIR LOGIN PARA RESERVAR
+if (empty($idUsuario)) {
+    // opcional: guardar a dónde quería ir
+    $_SESSION['redirect_after_login'] = "../reservas/reservar.php?isbn=" . urlencode($_GET['isbn'] ?? '');
+    header("Location: ../login/login.html");
+    exit();
+}
+
 ?>
 
 <?php
