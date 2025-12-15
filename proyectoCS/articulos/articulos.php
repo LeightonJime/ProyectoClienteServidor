@@ -113,7 +113,7 @@ $totalLibros = ($resultadoLibros) ? $resultadoLibros->num_rows : 0;
                     <a href="#listado-articulos" class="nav-link">Libros</a>
                   </li>
                   <li class="menu-item"><a href="../calificaciones/calificaciones.php" class="nav-link">Calificaciones</a></li>
-                  <li class="menu-item"><a href="../libros/Anuncio.html" class="nav-link">Anuncios y actividades</a></li> 
+                  <li class="menu-item"><a href="../tablon/Anuncio.php" class="nav-link">Anuncios y actividades</a></li>
                 </ul>
 
                 <div class="hamburger">
