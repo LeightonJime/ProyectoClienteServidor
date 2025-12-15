@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../conn.php';
+include '../articulos/db_conexion.php';
 
 // Validación básica
 if (!isset($_POST['email'], $_POST['password'])) {
