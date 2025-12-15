@@ -1,9 +1,6 @@
 <?php
-$servidor = "127.0.0.1";
-$puerto   = 3307;           // si usas este puerto
-$usuario_db = "Adminbiblio";
-$contrasena_db = "biblio123";
-$nombre_db = "biblioheredia";
+session_start();
+include '../articulos/db_conexion.php';
 
 // Validación básica
 if (!isset($_POST['email'], $_POST['password'])) {
